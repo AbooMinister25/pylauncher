@@ -1,7 +1,8 @@
 """
 The entry point for the CLI. Invoked using `py` or `pylauncher`
 """
-from pylauncher.core import app
+from pylauncher.core import PyLauncher
 
 if __name__ == "__main__":
-    app()
+    cli = PyLauncher()
+    cli.run()
