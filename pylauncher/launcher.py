@@ -1,7 +1,7 @@
 import subprocess
 
-from pylauncher.config import CURRENT_VERSION
+from pylauncher.config import config
 
 
 def run_python(*options: str) -> None:
-    subprocess.run([CURRENT_VERSION, *options])
+    subprocess.run([config.CURRENT_VERSION, *options])
