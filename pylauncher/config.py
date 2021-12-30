@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 
 class Config:
@@ -12,7 +13,7 @@ class Config:
         )
         self.CURRENT_VERSION = "python3.9"
 
-    def get_installed_versions(self) -> list[str]:
+    def get_installed_versions(self) -> List[str]:
         with open(f"{self.CONFIG_DIR}/.installed_versions", "r") as f:
             versions = f.readlines()
 
