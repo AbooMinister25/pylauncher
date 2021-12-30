@@ -1,5 +1,3 @@
-from typing import List
-
 import subprocess
 
 from pylauncher.config import CURRENT_VERSION

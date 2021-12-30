@@ -1,15 +1,8 @@
 import argparse
 import sys
 
-from pylauncher.config import (
-    get_current_version,
-    get_installed_versions,
-    set_default_version,
-    CURRENT_VERSION,
-)
-from pylauncher.installer import compile_python, fetch_python, unzip_tar
-from pylauncher.utils import confirm
 from pylauncher.default import set_default
+from pylauncher.installer import compile_python, fetch_python, unzip_tar
 from pylauncher.launcher import run_python
 
 

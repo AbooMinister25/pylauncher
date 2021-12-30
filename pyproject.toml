@@ -6,7 +6,6 @@ authors = ["AbooMinister25 <aboominister@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-typer = "^0.4.0"
 requests = "^2.26.0"
 coverage = "^6.2"
 
@@ -23,6 +22,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
 format = "poetry run black pylauncher tests && poetry run isort pylauncher tests"
-lint = "poetry run flake8 pylauncher"
+lint = "poetry run flake8 pylauncher --max-line-length 100"
 test = "poetry run pytest"
 coverage = "poetry run coverage run -m pytest"
