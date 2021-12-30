@@ -1,6 +1,6 @@
 import sys
 
-from pylauncher.config import get_installed_versions, set_default_version
+from pylauncher.config import config
 from pylauncher.installer import compile_python, fetch_python, unzip_tar
 from pylauncher.utils import confirm
 
@@ -24,11 +24,11 @@ def set_default(version) -> None:
 
             print("Successfully downloaded python")
 
-            set_default_version(
+            config.set_default_version(
                 version
             )  # Set the newly installed python version to the default
         else:
             print(f"Python version {version} does not exist")
             sys.exit(0)
 
-    set_default_version(version)
+    config.set_default_version(version)
