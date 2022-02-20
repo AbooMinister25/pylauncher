@@ -2,13 +2,19 @@ from typing import Optional
 
 
 def confirm(question: str, default: Optional[str] = "yes") -> bool:
-    """
-    Asks a confirmation question and returns True or False whether they answered yes or no
+    """Confirms some user interaction
 
-    :param question: The question to display to the user
-    :param default: The default option to use if the user hits enter
-    :return: True if answer is yes, False if answer is no
+    Asks a confirmation question and returns True or False
+    based on whether they answered yes or no.
+
+    Args:
+        question: The prompt to use.
+        default: The default option, defaults to "yes".
+
+    Returns:
+        A boolean indicating whether the user answered yes or no.
     """
+
     valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
 
     if default is None:

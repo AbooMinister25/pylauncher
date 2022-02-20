@@ -6,11 +6,11 @@ from pathlib import Path
 import requests
 
 
-def fetch_python(version: str) -> str:
-    """
-    Fetches the given python version from python.org
+def fetch_python(version: str):
+    """Fetches the given python version from python.org
 
-    :param version: The version to fetch.
+    Args:
+        version: The python version to fetch.
     """
 
     url = f"https://www.python.org/ftp/python/{version}/Python-{version}.tgz"
@@ -30,12 +30,11 @@ def fetch_python(version: str) -> str:
         sys.exit(1)
 
 
-def unzip_tar(path: str) -> None:
-    """
-    Unzips the given tarfile
+def unzip_tar(path: str):
+    """Unzips the given tarfile
 
-    :param path: The path to the archive.
-    :return: None
+    Args:
+        path: The path to the tar file.
     """
 
     tar = tarfile.open(path)
@@ -43,13 +42,13 @@ def unzip_tar(path: str) -> None:
     tar.close()
 
 
-def compile_python(version: str) -> None:
-    """
-    Compiles the installed python version
+def compile_python(version: str):
+    """Compiles the installed python version
 
-    :param version: The python version
-    :return: None
+    Args:
+        version: The version to compile
     """
+
     source_path = Path.cwd() / f"Python-{version}"
     subprocess.run(
         [

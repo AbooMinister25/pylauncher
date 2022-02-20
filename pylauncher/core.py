@@ -1,31 +1,34 @@
 import argparse
 import sys
 
-from pylauncher.default import set_default
 from pylauncher.installer import compile_python, fetch_python, unzip_tar
 from pylauncher.launcher import run_python
+from pylauncher.config import config
 
 
 class PyLauncher:
+    """An interface to the main CLI"""
+
     def __init__(self):
         self.python_arguments = []  # Arguments to pass onto the python executable
 
         self.parser = argparse.ArgumentParser(
-            description="A python launcher and version manager"
+            prog="pylauncher", description="A python launcher and version manager"
         )
+
+        self.parser.add_argument(
+            "-ls", "--list", help="Lists the available python versions"
+        )
+
         self.parser.add_argument(
             "command", help="Subcommand to run", nargs="?", default=None
         )
 
-    def install(self) -> None:
-        """
-        Installs the provided python version
-
-        :return: None
-        """
+    def install(self):
+        """Installs the provided python version"""
 
         parser = argparse.ArgumentParser(
-            description="Install the provided python version"
+            prog="pylauncher", description="Install the provided python version"
         )
 
         parser.add_argument("version", type=float, help="The python version to install")
@@ -44,14 +47,12 @@ class PyLauncher:
             unknown
         )  # Add unknown args to be passed onto the main python executable
 
-    def default(self) -> None:
-        """
-        Sets the default python version, and if not installed, installs it
+    def default(self):
+        """Sets the default python version, and if not installed, installs it"""
 
-        :return None:
-        """
-
-        parser = argparse.ArgumentParser(description="Set the default python version")
+        parser = argparse.ArgumentParser(
+            prog="pylauncher", description="Set the default python version"
+        )
 
         parser.add_argument(
             "version", type=float, help="The python version to set as the default"
@@ -59,26 +60,18 @@ class PyLauncher:
         args, unknown = parser.parse_known_args(sys.argv[2:])
         version = args.version
 
-        set_default(version)
+        config["PYTHON_VERSION"] = version
 
         self.python_arguments.append(
             unknown
         )  # Add unknown args to be passed onto the main python executable
 
-    def run_python(self) -> None:
-        """
-        Launches the python executable
-
-        :return None:
-        """
+    def run_python(self):
+        """Launches the python executable"""
         run_python(*self.python_arguments)
 
-    def run(self) -> None:
-        """
-        Runs the argument parser
-
-        :return: None
-        """
+    def run(self):
+        """Runs the argument parser"""
 
         if len(sys.argv) == 1:
             self.run_python()
